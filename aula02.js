@@ -1,23 +1,11 @@
 const axios = require("axios");
 
-/*async function buscarCep(cep) {
-  console.log("inicio");
-  axios
-    .get(`https://viacepp.com.br/ws/${cep}/json/`)
-    .then((response) => console.log(response.data))
-    .catch((error) => console.log(error));
-  console.log("fim");
-}*/
+async function traducao(frase, linguagem) {
+  const response = await axios.get(
+    `https://api.funtranslations.com/translate/${linguagem}?text=${frase}`
+  );
 
-async function buscarCep(cep) {
-  try {
-    console.log("inicio");
-    const response = await axios.get(`https://viacepp.com.br/ws/${cep}/json/`);
-  } catch (error) {
-    console.log("Ocorreu um erro", error.message);
-  } finally {
-    console.log("fim");
-  }
+  console.log(response.data);
 }
 
-buscarCep("99440000");
+traducao("My name is Júlia", "valyrian");
